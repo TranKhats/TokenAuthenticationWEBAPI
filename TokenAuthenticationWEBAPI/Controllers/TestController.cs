@@ -7,6 +7,16 @@ namespace TokenAuthenticationInWebAPI.Controllers
 {
     public class TestController : ApiController
     {
+        [Authorize(Roles = "SuperAdmin, Admin, User")]
+        [HttpGet]
+        [Route("api/test/TestRoleApi")]
+        public IHttpActionResult TestRoleApi()
+        {
+            var identity = (ClaimsIdentity)User.Identity;
+            return Ok("Hello: " + identity.Name);
+        }
+
+
         //This resource is For all types of role
         [Authorize(Roles = "SuperAdmin, Admin, User")]
         [HttpGet]
@@ -41,5 +51,17 @@ namespace TokenAuthenticationInWebAPI.Controllers
                         .Select(c => c.Value);
             return Ok("Hello " + identity.Name + "Your Role(s) are: " + string.Join(",", roles.ToList()));
         }
+
+
+        // POST api/Account/Login
+        //[Route("Login")]
+        //public IHttpActionResult Login(LoginBindingModel model)
+        //{
+        //    ClaimsIdentity ci = new ClaimsIdentity();
+        //    // ...
+        //    // ...
+        //    Authentication.SignIn(ci);
+        //    return Ok();
+        //}
     }
 }

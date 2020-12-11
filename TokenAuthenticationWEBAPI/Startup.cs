@@ -5,6 +5,7 @@ using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
 using TokenAuthenticationWEBAPI.Models;
 using TokenAuthenticationWEBAPI;
+using Microsoft.Owin.Security.Infrastructure;
 
 [assembly: OwinStartup(typeof(TokenAuthenticationInWebAPI.App_Start.Startup))]
 namespace TokenAuthenticationInWebAPI.App_Start
